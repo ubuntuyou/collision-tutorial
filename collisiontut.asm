@@ -13,9 +13,17 @@ BALL    = $0300 ; Assuming our first spriteRAM location is the ball and it uses 
 PADDLE1 = $0304 ; Assuming our paddles are 4 sprites tall and starts with the second spriteRAM location
 PADDLE2 = $0314 ; Our second paddle would start at the 6th spriteRAM location
 
-Also we need to create a collisionDetected flag in our variables section.
+Also we need to create a collisionDetected flag and bounding box sides in our variables section.
 
-hitDetected   .rs 1
+hitDetected     .rs 1
+
+ballTOP         .rs 1
+ballBOTTOM      .rs 1
+ballLEFT        .rs 1
+ballRIGHT       .rs 1
+; 
+; Do the same for each paddle TOP, BOTTOM, LEFT and RIGHT
+;
 
 We can now reference BALL, PADDLE1, and PADDLE2 in your code instead of using arbitrary addresses.
 BALL, BALL+1, BALL+2, and BALL+3 access the four bytes associated with BALL ($0300 - $0303).
