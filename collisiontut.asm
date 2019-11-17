@@ -71,13 +71,13 @@ another bounding box around a different set of sprites. We will need 4 variables
 of the box. To do this we can use our ballX and ballY variables to make a subroutine that calculates the bounding box.
 
 updateBallCollision:
-    LDA ballY        ; Load BALL+0 which contains the Y coordinates of our ball
+    LDA ballY       ; Load ballY which contains the (BALL+0) Y coordinates of our ball
     STA ballTOP     ; Store in ballTOP. This is the top of our bounding box.
     CLC
     ADC #$07        ; Add #$07 to the Y coordinates to get the bottom of the ball
     STA ballBOTTOM  ;   and store in ballBOTTOM to define the bottom of the bounding box
 
-    LDA ballX      ; Load BALL+3 which contains the X coordinates of our ball
+    LDA ballX       ; Load ballX which contains the (BALL+3) X coordinates of our ball
     STA ballLEFT    ; Store in ballLEFT. This is the left side of our bounding box.
     CLC
     ADC #$07        ; Add #$07 to the X coordinates to get the right side of the ball
