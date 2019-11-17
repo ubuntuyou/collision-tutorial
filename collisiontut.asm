@@ -17,12 +17,15 @@ Also we need to create a collisionDetected flag and bounding box sides in our va
 
 hitDetected     .rs 1
 
+ballX           .rs 1
+ballY           .rs 1
+
 ballTOP         .rs 1
 ballBOTTOM      .rs 1
 ballLEFT        .rs 1
 ballRIGHT       .rs 1
 ; 
-; Do the same for each paddle TOP, BOTTOM, LEFT and RIGHT
+; Do the same for each paddle X, Y, TOP, BOTTOM, LEFT and RIGHT
 ;
 
 We can now reference BALL, PADDLE1, and PADDLE2 in your code instead of using arbitrary addresses.
@@ -65,17 +68,16 @@ It would be even better to call this only when the paddles have moved.
 
 Now for the bounding box business. Imagine that our character, in this case a ball, has a box around it that you want to check against 
 another bounding box around a different set of sprites. We will need 4 variables that contain the top, bottom, left, and right sides 
-of the box. To do this we can use our BALL constant to make a subroutine that calculates the bounding box. Alternatively we can use  
-the X and Y position variables for each metasprite. ballX and ballY for example.
+of the box. To do this we can use our ballX and ballY variables to make a subroutine that calculates the bounding box.
 
 updateBallCollision:
-    LDA BALL        ; Load BALL+0 which contains the Y coordinates of our ball
+    LDA ballY        ; Load BALL+0 which contains the Y coordinates of our ball
     STA ballTOP     ; Store in ballTOP. This is the top of our bounding box.
     CLC
     ADC #$07        ; Add #$07 to the Y coordinates to get the bottom of the ball
-    STA ballBOTTOM  ;   and store in ballBOT to define the bottom of the bounding box
+    STA ballBOTTOM  ;   and store in ballBOTTOM to define the bottom of the bounding box
 
-    LDA BALL+3      ; Load BALL+3 which contains the X coordinates of our ball
+    LDA ballX      ; Load BALL+3 which contains the X coordinates of our ball
     STA ballLEFT    ; Store in ballLEFT. This is the left side of our bounding box.
     CLC
     ADC #$07        ; Add #$07 to the X coordinates to get the right side of the ball
